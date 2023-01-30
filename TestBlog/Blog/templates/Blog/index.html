@@ -1,0 +1,49 @@
+{% extends 'Blog/base.html' %}
+
+{% block hello %}
+    <h1 class="fw-bolder">Добро пожаловать на BlogAtlas!</h1>
+{% endblock %}
+
+{% block content %}
+{% for p in posts %}
+<div class="card mb-4">
+    <a href="{{ p.get_absolute_url }}"><img class="card-img-top" src="{{p.photo.url}}" alt="..."/></a>
+    <div class="card-body">
+        <div class="small text-muted">{{p.time_create}}</div>
+        <h2 class="card-title">{{p.title}}</h2>
+        <p>{{p.content|truncatewords:50}}</p>
+        <a class="btn btn-primary" href="{{ p.get_absolute_url }}">Подробнее →</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block pagination %}
+<nav aria-label="Pagination">
+    <hr class="my-0"/>
+    <ul class="pagination justify-content-center my-4">
+        {% if page_obj.has_previous %}
+        <li class="page-link">
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        </li>
+        {% endif %}
+        {% for p in paginator.page_range %}
+        {% if page_obj.number == p %}
+        <li class="page-item active" aria-current="page"><a class="page-link">{{ p }}</a></li>
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+        <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-link">
+            <a href="?page={{ page_obj.next_page_number }}">Следущая</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
+
+
+
+
+

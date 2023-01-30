@@ -1,0 +1,17 @@
+{% extends 'Blog/base.html' %}
+
+{% block content %}
+{% for p in found %}
+<div class="card mb-4">
+    <a href="{{ p.get_absolute_url }}"><img class="card-img-top" src="{{p.photo.url}}" alt="..."/></a>
+    <div class="card-body">
+        <div class="small text-muted">{{p.time_create}}</div>
+        <h2 class="card-title">{{p.title}}</h2>
+        <p>{{p.content|truncatewords:50}}</p>
+        <a class="btn btn-primary" href="{{ p.get_absolute_url }}">Подробнее →</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+

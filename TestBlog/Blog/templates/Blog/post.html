@@ -1,0 +1,12 @@
+{% extends 'Blog/base.html' %}
+
+{% block hello %}
+<h1 class="fw-bolder">{{post.title}}</h1>
+{% endblock %}
+
+{% block content %}
+{% if post.photo %}
+<p><img class="card-img-top" src="{{post.photo.url}}" alt="..."></p>
+{% endif %}
+{{post.content}}
+{% endblock %}
