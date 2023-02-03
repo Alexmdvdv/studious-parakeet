@@ -1,11 +1,12 @@
 {% extends 'Blog/base.html' %}
+{% load static %}
 
 {% block hello %}
 <h1 class="fw-bolder">Что такое BlogAtlas?</h1>
 {% endblock %}
 
 {% block content %}
-<p><img class="card-img-top" src="/media/blogabout.jpg" alt="..."></p>
+<p><img class="card-img-top" src="{% static 'Blog/images/blogabout.jpg' %}" alt="..."></p>
 
 <p>BlogAtlas - это блог, который публикует статьи об интересных местах и архитектуре по всему миру. Мы ищем и делимся с
     вами уникальными историями и фактами о самых красивых и загадочных местах нашей планеты, от древних
