@@ -3,7 +3,7 @@ from .models import *
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'slug', 'time_create', 'photo', 'is_published')
+    list_display = ('id', 'title', 'time_create', 'is_published')
     list_display_links = ('id', 'title')
     search_fields = ('title', 'content')
     prepopulated_fields = {'slug': ('title',)}

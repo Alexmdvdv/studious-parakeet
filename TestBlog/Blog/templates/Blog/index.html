@@ -1,7 +1,7 @@
 {% extends 'Blog/base.html' %}
 
 {% block hello %}
-    <h1 class="fw-bolder">Добро пожаловать на BlogAtlas!</h1>
+<h1 class="fw-bolder">Добро пожаловать на Cooking Delight!</h1>
 {% endblock %}
 
 {% block content %}
@@ -16,6 +16,29 @@
     </div>
 </div>
 {% endfor %}
+{% endblock %}
+
+{% block cats %}
+<div class="card mb-4">
+    {% if cat_selected == 0 %}
+    <div class="card-header">Все категории</div>
+    {% else %}
+    <div class="card-header"><a href="{% url 'home' %}">Все категориии</a></div>
+    {% endif %}
+    <div class="card-body">
+        <div class="row">
+                <ul class="list-unstyled mb-0">
+                    {% for category in categories %}
+                    {% if category.slug == cat_selected %}
+                    <li><a type="button" class="btn btn-primary">{{category.name}}</a></li>
+                    {% else %}
+                    <li><a href="{{ category.get_absolute_url }}" type="button" class="btn btn-outline-primary">{{category.name}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block pagination %}
@@ -42,8 +65,4 @@
     </ul>
 </nav>
 {% endblock %}
-
-
-
-
 

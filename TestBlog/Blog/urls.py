@@ -13,7 +13,7 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('post/<slug:post_slug>/', ShowPost.as_view(), name='post'),
     path('category/<slug:cat_slug>/', ShowCategory.as_view(), name='category'),
-    path('search/', Search.as_view(), name='search')
+    path('search/', Search.as_view(), name='search'),
 ]
 
 

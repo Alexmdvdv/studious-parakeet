@@ -12,28 +12,31 @@ class AddPostForm(forms.ModelForm):
 
     class Meta:
         model = BlogModel
-        fields = ['title', 'slug', 'content', 'photo', 'is_published', 'cat']
+        fields = ['title', 'content', 'photo', 'cat']
         widgets = {
-            'content': forms.Textarea(attrs={'cols': 60, 'rows': 1})
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control form-control-sm'}),
+            'cat': forms.Select(attrs={'class': 'form-select'})
         }
 
 
 class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-control'}))
     # email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
-    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
         fields = ('username', 'password1', 'password2')
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-input'}),
-            'password1': forms.PasswordInput(attrs={'class': 'form-input'}),
-            'password2': forms.PasswordInput(attrs={'class': 'form-input'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
         }
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))

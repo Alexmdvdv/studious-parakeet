@@ -2,9 +2,10 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from unidecode import unidecode
 
 from .forms import AddPostForm, LoginUserForm, RegisterUserForm
 from .models import *
@@ -131,5 +132,3 @@ class Search(DataMixin, ListView):
         context['q'] = self.request.GET.get('q')
         mixin_context = self.get_user_context(title='Результат поиска - ' + context['q'])
         return dict(list(context.items()) + list(mixin_context.items()))
-
-
