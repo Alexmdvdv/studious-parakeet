@@ -8,7 +8,9 @@
 {% if post.photo %}
 <p><img class="card-img-top" src="{{post.photo.url}}" alt="..."></p>
 {% endif %}
+{% autoescape on %}
 {{post.content|linebreaks}}
+{% endautoescape %}
 {% endblock %}
 
 
